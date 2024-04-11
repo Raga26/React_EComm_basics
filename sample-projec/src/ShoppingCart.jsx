@@ -3,14 +3,7 @@ import Product from "./Product";
 
 export default class ShoppingCart extends Component {
   state = {
-    products: [
-      { id: 1, productName: "iPhone", price: 8900, quantity: 0 },
-      { id: 2, productName: "Sony Camera", price: 4500, quantity: 0 },
-      { id: 3, productName: "Samsung QLED TV", price: 7745, quantity: 0 },
-      { id: 4, productName: "iPad Pro", price: 12400, quantity: 0 },
-      { id: 5, productName: "Xbox", price: 7780, quantity: 0 },
-      { id: 6, productName: "Dell Monitor", price: 880, quantity: 0 },
-    ],
+    products: [],
   };
 
   render() {
@@ -38,6 +31,20 @@ export default class ShoppingCart extends Component {
     );
   }
   //render ends here
+
+  //executes after constructor and render method
+  //(includes life cyccle of child compoenents, if any)of current compoenent
+
+  componentDidMount =  async() => {
+    //fetch data from data source
+    console.log("componentDidMount - ShopppingCart");
+
+    var response = await fetch("http://localhost:5000/products" , {method:"GET"});
+
+    var prods = await response.json();
+
+    this.setState({products : prods});
+  }
 
   handleIncrement = (productParam) => {
    console.log("handling increment", productParam);
@@ -78,4 +85,6 @@ export default class ShoppingCart extends Component {
     }
 
   };
+
+  
 }

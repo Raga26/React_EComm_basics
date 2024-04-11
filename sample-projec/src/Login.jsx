@@ -4,7 +4,7 @@ export default class Login extends Component{
 
     constructor(props){
         super(props);
-        this.state = {email:"",password:""};
+        this.state = {email:"",password:"" , message:""};
     }
     render(){
         return <div className="col-lg-9">
@@ -35,6 +35,7 @@ export default class Login extends Component{
 
         {/* Login Button */}
         <div className="text-right">
+            {this.state.message}
             <button className="btn btn-primary m-1" onClick={this.onLoginClick}>
                 Login
             </button>
@@ -42,9 +43,32 @@ export default class Login extends Component{
 
     </div>
 
-    }
+    }//end of render
 
-    onLoginClick = () => {
-        console.log("curr state after click : ",this.state);
+    //Executes when the user clicks on Login
+  onLoginClick = async () => {
+    console.log("this.state on click : ", this.state);
+
+    var response = await fetch(
+      `http://localhost:5000/users?email=${this.state.email}&password=${this.state.password}`,
+      { method: "GET" }
+    );
+
+    var body = await response.json();
+    console.log("body of the api call" ,body);
+
+    if (body.length > 0) {
+      //success
+      this.setState({
+        message: <span className="text-success">Successfully Logged-in</span>,
+      });
+    } else {
+      //error
+      this.setState({
+        message: (
+          <span className="text-danger">Invalid login, please try again</span>
+        ),
+      });
     }
+  };
 }
