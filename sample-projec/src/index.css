@@ -1,0 +1,16 @@
+.highlight{
+    background-color: palevioletred !important;
+    color: black !important;
+}
+.moveRht{
+    float: right !important;  /* Or use display: flex; justify-content: flex-end; for better responsiveness */
+  width: fit-content !important; /* Ensures the button doesn't collapse due to Bootstrap grid */
+  margin-left: auto;
+}
+.quantity-color{
+    color: black;
+}
+
+.hand-icon{
+    cursor:pointer;
+}
