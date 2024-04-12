@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"; 
 
 export default class Product extends Component {
   render() {
-    console.log(this.props);
+    console.log("prod component render()" , this.props);
 
     return (
       <div className="col-lg-6">
@@ -34,7 +35,12 @@ export default class Product extends Component {
                 </div>
             </div>
             {/* Buy now button */}
-            <div className="float-right moveRht">{this.props.children}</div>
+            <div className="float-right moveRht">
+              <Link to = {`product/${this.state.product.id}`} className="mr-2">
+              Details 
+              </Link>
+              {this.props.children}
+            </div>
 
           </div>
           

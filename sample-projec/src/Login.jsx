@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import history from "./history";
 
 export default class Login extends Component{
 
@@ -7,7 +8,7 @@ export default class Login extends Component{
         this.state = {email:"",password:"" , message:""};
     }
     render(){
-        return <div className="col-lg-9">
+        return <div>
            <h4 className="m-1 p-2 border-bottom">Login</h4> 
 
         {/* Email */}
@@ -62,6 +63,12 @@ export default class Login extends Component{
       this.setState({
         message: <span className="text-success">Successfully Logged-in</span>,
       });
+
+      this.props.updateIsLoggedInStatus(true);
+
+      //Navigate to dashboard
+      history.replace("/dashboard");
+
     } else {
       //error
       this.setState({
