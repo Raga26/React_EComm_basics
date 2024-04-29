@@ -10,3 +10,5 @@ import "font-awesome/css/font-awesome.css";
 
 ReactDOM.render(<App />,document.getElementById("root"));
 
+//dont pass this data down
+
