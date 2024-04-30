@@ -1,11 +1,10 @@
 import React,{ Component } from "react";
-import history from "./history";
 
 export default class Login extends Component{
 
     constructor(props){
         super(props);
-        this.state = {email:"",password:"" , message:""};
+        this.state = {email:"scott@test.com",password:"scott123" , message:""};
     }
     render(){
         return <div>
@@ -67,7 +66,7 @@ export default class Login extends Component{
       this.props.updateIsLoggedInStatus(true);
 
       //Navigate to dashboard
-      history.replace("/dashboard");
+      this.props.history.replace("/dashboard");
 
     } else {
       //error
